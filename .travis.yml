@@ -20,7 +20,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: $GITHUB_TOKEN
+    secure: "$GITHUB_TOKEN"
   file:
   - terraform-provider-k8s.linux.amd64
   - terraform-provider-k8s.darwin.amd64
