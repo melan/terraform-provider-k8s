@@ -1,0 +1,29 @@
+language: go
+sudo: false
+
+# build code is from here: https://blog.questionable.services/article/build-go-binaries-travis-ci-github/
+before_install:
+  # gox simplifies building for multiple architectures
+  - go get github.com/mitchellh/gox
+
+install:
+  - # skip
+
+script:
+  - go get -t -v ./...
+  - go vet $(go list ./... | grep -v /vendor/)
+  - go test -v -race ./...
+  - gox -os="linux darwin" -arch="amd64" -output="terraform-provider-k8s.." -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...
+
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: kKAg7h17tvK79q+KW2OWmNEqHbZdQbwxlXDTibhbmhdAdtVpZx2LjUrvBADE0cYiB9Zw4XcEitcDrSkjHlqI2JrfqDhQYj9S+IucfZq30uDfzxKsbs7UMZpD/g5Je0joPD985HiPizzIuOtgWI0Ns5fwc/nS/fxxS3D5wbflGOw6OpPhP/Cgm/7x02y9dlt2P1durJLKGRdmjxnbKUmpenKBzrZX7avVuJ51FTxXgMjcJpty9GiVC01tAhOXfKAovpyXc0nsQioye/yI9zt8LkZlHZT7XCFucC+4RLboNKYJFKfhdZloFW8mgM9bjWW34AEkWCEa3uL4n3M+ruy3dNDwfrW8rfpNwqzTHrOKh8nzcichIUksACbykLKC5fuYACHb9zdEU2vaQX63NQpn82G+gj4E/84zJiQDbm3jt4yxbWiwC+SmNPxb6KtoHMlhEeQZSqVjBi+kqwviPYRvSSnB1L/T26j8Be0BZOxxzHQMpcTNaD/5B/zfuuqerfB3733LSkCq8PG4Yz8GCcDmoK8vMLCaw93J4fiK0rkP3tc1OAeYQ62+61pP4fVyJHEsPGYLZwuvfxYqrlbc2AVod7h4yWFDquiWIXH3mvqngNdkYnlFmycTFgLEBT2cGEtGpzxh729Cf3mYhr0g7e9DrCTO95N5zd+jFRWrrBuP9mo=
+  file:
+  - terraform-provider-k8s.linux.amd64
+  - terraform-provider-k8s.darwin.amd64
+  on:
+    repo: melan/terraform-provider-k8s
+    tags: true
