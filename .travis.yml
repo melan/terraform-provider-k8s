@@ -20,7 +20,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: "$GITHUB_TOKEN"
+    secure: "aofcIBWFIo0lsb63h2bhrqrAsXXBd6Qa1i6j1c1i4r38Ud0n4mk5hNDou6HRCYRdE+q285TFdag4BDv5W8z4jE/Xg4I9rdBeAatn1jHUtVlur9jGhuM1GkhZZzGK2AslaQMO0aJWJ3JvfFMzHXhIqhOzY2t7RRoCeTZKPGhtbzh+shLUqubAonkfWuXY3/aA7EHJnq6Gw/RWFdyW+QkWMLri1y46N1T7NE0gWaKP6FIYoSdiXxgKMOGZZZGvAIvSaJBFbw6FJehKkWKTGpVO1RerhHsmbZGx4TmTWtxCWAkvwdJUARJi9BZtNQE/NzN/iEMnnOYKxJyb1QMJsh0eOjevaFFkUxC4IJV1UTOU7jLL6qQF95RwX0rwHA7V8F+EacEJDYw9VYvdw4j/oChdJtqVv7/4Z2Fdn15LXi9N+T4RNMM69vOJMWT9nZF2qJ+DbmjinsfBYP7q4F5XsnxRBz0KLTjIHODWVXDbaLOV7qVPOPhtEjW3PsEXZR9UKRNnL4OnqyjCQ2xvuiFPKdaBWO788RNv++zG8M02WJVsQWmPojwWS9r7vm5XCh6Y/iZ7QF8wEFuoEZ0FyYw1ByuNgMjjDTLg5EtwUqYfqhux1KzKHahqEz2xIBnECWy5XvGwmh8VSf9h26Mdd5t9UefKD80Am3ozOmq9PCcsdboxxzo="
   file:
   - terraform-provider-k8s.linux.amd64
   - terraform-provider-k8s.darwin.amd64
